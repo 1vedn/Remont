@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище UP01_221Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Role" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="int" Nullable="false" />
+          <Property Name="EquipmentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Executors">
+          <Key>
+            <PropertyRef Name="ExecutorID" />
+          </Key>
+          <Property Name="ExecutorID" Type="int" Nullable="false" />
+          <Property Name="ExecutorName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Position" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactInfo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FaultTypes">
+          <Key>
+            <PropertyRef Name="FaultTypeID" />
+          </Key>
+          <Property Name="FaultTypeID" Type="int" Nullable="false" />
+          <Property Name="FaultTypeName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateAdded" Type="date" />
+          <Property Name="EquipmentID" Type="int" />
+          <Property Name="FaultTypeID" Type="int" />
+          <Property Name="ProblemDescription" Type="nvarchar(max)" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="ExecutorID" Type="int" />
+          <Property Name="Priority" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompletionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Requests__Client__5535A963">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Equipm__534D60F1">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Execut__571DF1D5">
+          <End Role="Executors" Type="Self.Executors" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Executors">
+              <PropertyRef Name="ExecutorID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ExecutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__FaultT__5441852A">
+          <End Role="FaultTypes" Type="Self.FaultTypes" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaultTypes">
+              <PropertyRef Name="FaultTypeID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="FaultTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Status__5629CD9C">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище UP01_221ModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Executors" EntityType="Self.Executors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaultTypes" EntityType="Self.FaultTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Requests__Client__5535A963" Association="Self.FK__Requests__Client__5535A963">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Equipm__534D60F1" Association="Self.FK__Requests__Equipm__534D60F1">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Execut__571DF1D5" Association="Self.FK__Requests__Execut__571DF1D5">
+            <End Role="Executors" EntitySet="Executors" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__FaultT__5441852A" Association="Self.FK__Requests__FaultT__5441852A">
+            <End Role="FaultTypes" EntitySet="FaultTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Status__5629CD9C" Association="Self.FK__Requests__Status__5629CD9C">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UP01_221Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Client__5535A963" FromRole="Clients" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SerialNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Equipm__534D60F1" FromRole="Equipment" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Executors">
+          <Key>
+            <PropertyRef Name="ExecutorID" />
+          </Key>
+          <Property Name="ExecutorID" Type="Int32" Nullable="false" />
+          <Property Name="ExecutorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Execut__571DF1D5" FromRole="Executors" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="FaultTypes">
+          <Key>
+            <PropertyRef Name="FaultTypeID" />
+          </Key>
+          <Property Name="FaultTypeID" Type="Int32" Nullable="false" />
+          <Property Name="FaultTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__FaultT__5441852A" FromRole="FaultTypes" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="EquipmentID" Type="Int32" />
+          <Property Name="FaultTypeID" Type="Int32" />
+          <Property Name="ProblemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="ExecutorID" Type="Int32" />
+          <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompletionDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Requests__Client__5535A963" FromRole="Requests" ToRole="Clients" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK__Requests__Equipm__534D60F1" FromRole="Requests" ToRole="Equipment" />
+          <NavigationProperty Name="Executors" Relationship="Self.FK__Requests__Execut__571DF1D5" FromRole="Requests" ToRole="Executors" />
+          <NavigationProperty Name="FaultTypes" Relationship="Self.FK__Requests__FaultT__5441852A" FromRole="Requests" ToRole="FaultTypes" />
+          <NavigationProperty Name="Statuses" Relationship="Self.FK__Requests__Status__5629CD9C" FromRole="Requests" ToRole="Statuses" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Status__5629CD9C" FromRole="Statuses" ToRole="Requests" />
+        </EntityType>
+        <Association Name="FK__Requests__Client__5535A963">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Equipm__534D60F1">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Execut__571DF1D5">
+          <End Role="Executors" Type="Self.Executors" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Executors">
+              <PropertyRef Name="ExecutorID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ExecutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__FaultT__5441852A">
+          <End Role="FaultTypes" Type="Self.FaultTypes" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FaultTypes">
+              <PropertyRef Name="FaultTypeID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="FaultTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Status__5629CD9C">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Executors" EntityType="Self.Executors" />
+          <EntitySet Name="FaultTypes" EntityType="Self.FaultTypes" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+          <AssociationSet Name="FK__Requests__Client__5535A963" Association="Self.FK__Requests__Client__5535A963">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Equipm__534D60F1" Association="Self.FK__Requests__Equipm__534D60F1">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Execut__571DF1D5" Association="Self.FK__Requests__Execut__571DF1D5">
+            <End Role="Executors" EntitySet="Executors" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__FaultT__5441852A" Association="Self.FK__Requests__FaultT__5441852A">
+            <End Role="FaultTypes" EntitySet="FaultTypes" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Status__5629CD9C" Association="Self.FK__Requests__Status__5629CD9C">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UP01_221ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="UP01_221Model.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="UP01_221Model.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Executors">
+            <EntityTypeMapping TypeName="UP01_221Model.Executors">
+              <MappingFragment StoreEntitySet="Executors">
+                <ScalarProperty Name="ExecutorID" ColumnName="ExecutorID" />
+                <ScalarProperty Name="ExecutorName" ColumnName="ExecutorName" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaultTypes">
+            <EntityTypeMapping TypeName="UP01_221Model.FaultTypes">
+              <MappingFragment StoreEntitySet="FaultTypes">
+                <ScalarProperty Name="FaultTypeID" ColumnName="FaultTypeID" />
+                <ScalarProperty Name="FaultTypeName" ColumnName="FaultTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="UP01_221Model.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="RequestNumber" ColumnName="RequestNumber" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="FaultTypeID" ColumnName="FaultTypeID" />
+                <ScalarProperty Name="ProblemDescription" ColumnName="ProblemDescription" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ExecutorID" ColumnName="ExecutorID" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="UP01_221Model.Statuses">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

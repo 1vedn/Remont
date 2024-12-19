@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="026a527c591f42c191514fb11a090cc2" Name="Diagram1">
+        <EntityTypeShape EntityType="UP01_221Model.Clients" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="UP01_221Model.Equipment" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UP01_221Model.Executors" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UP01_221Model.FaultTypes" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UP01_221Model.Requests" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="UP01_221Model.Statuses" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="UP01_221Model.FK__Requests__Client__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="UP01_221Model.FK__Requests__Equipm__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="UP01_221Model.FK__Requests__Execut__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="UP01_221Model.FK__Requests__FaultT__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="UP01_221Model.FK__Requests__Status__5629CD9C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

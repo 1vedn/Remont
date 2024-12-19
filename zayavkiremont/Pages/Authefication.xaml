@@ -1,0 +1,47 @@
+﻿<Page x:Class="zayavkiremont.Pages.Authefication"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:zayavkiremont.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Аутификация">
+
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="80*"/>
+
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="log" Text="Логин:" Width="50" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="16" />
+        <TextBlock x:Name="PRL" Text="Пароль:"  Width="50"  Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Height="16" />
+
+        <TextBox x:Name="login" Grid.Column="2" Grid.Row="1"  Width="170" Height="30">
+            <TextBox.ToolTip>Введи логин</TextBox.ToolTip>
+        </TextBox>
+        <PasswordBox x:Name="password" Grid.Column="2" Grid.Row="2" Width="170" Height="30">
+            <PasswordBox.ToolTip>Вводи пароль</PasswordBox.ToolTip>
+        </PasswordBox>
+        <Button x:Name="IN"  Content="Вход" Click="Open_click" HorizontalAlignment="Center" Width="200" Height ="40"  Grid.ColumnSpan="4" Grid.Row="3" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.ToolTip>
+                <ToolTip Content="Тыкай и войдешь"/>
+            </Button.ToolTip>
+        </Button>
+
+    </Grid>
+</Page>

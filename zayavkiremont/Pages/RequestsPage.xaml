@@ -1,0 +1,102 @@
+﻿<Page x:Class="zayavkiremont.Pages.RequestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:zayavkiremont.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1200"
+      Title="RequestsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="123*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="377*"/>
+            <RowDefinition Height="73*"/>
+
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" Name="DataGridRequests" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Center" Width="1100" Margin="0,0,0,24">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding RequestID}" Width="40"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding RequestNumber}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Дата начала" Binding="{Binding DateAdded}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment.EquipmentName}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Тип ошибки" Binding="{Binding FaultTypes.FaultTypeName}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Описание" Binding="{Binding ProblemDescription}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Clients.Name}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Statuses.StatusName}" Width="*"/>
+                <DataGridTextColumn Header="Исполнитель" Binding="{Binding Executors.ExecutorName}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="*"/>
+                <DataGridTextColumn Header="Дата окончания" Binding="{Binding CompletionDate}" Width="*"/>
+
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="ButtonEdit" Content="Редактировать" Click="ButtonEdit_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="310"/>
+                <ColumnDefinition Width="315"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Name="ButtonAdd" Content="Добавить" HorizontalAlignment="Center" Click="ButtonAdd_Click"  ToolTip="Добавить данные в базу" Width="100" Height="50" />
+            <Button Name="ButtonDel" Content="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonDel_Click"  ToolTip="Удалить данные из базы"  Grid.Column="3" Width="100" Height="50"/>
+            <Button x:Name="ButtonRev" Content="Отзывы" HorizontalAlignment="Center" Click="ButtonRev_Click"  ToolTip="Отзывы" Grid.Column="2" Width="100" Height="50"/>
+            <TextBox x:Name="Numfilter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="30" TextChanged="Numfilter_TextChanged"/>
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Поиск по номеру" VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</Page>
